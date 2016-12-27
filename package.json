@@ -1,9 +1,10 @@
 {
   "name": "2dv513-assignment3",
   "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
+  "description": "Assignment 3",
+  "main": "src/app.js",
   "scripts": {
+    "watch": "nodemon -L app/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/simonpalmqvist/2dv513-assignment3/issues"
   },
-  "homepage": "https://github.com/simonpalmqvist/2dv513-assignment3#readme"
+  "homepage": "https://github.com/simonpalmqvist/2dv513-assignment3#readme",
+  "dependencies": {
+    "pg": "^6.1.2"
+  }
 }
