@@ -1,33 +1,29 @@
 
+const user = '345f804bfb3e6cdef3abb68f90489834'
 
-module.exports.data = function () {
-  return {
-    recipe: {
-      name: 'Pasta',
-      image: 'http://lol.lol',
-      ingredients: [
-        {name: 'Salt'},
-        {name: 'Spaghetti', amount: '400', amount_type: 'g'}
-      ],
-      instructions: [
-        {step: 1, description: 'LAGA!'}
-      ]
-    },
+const recipe = {
+  id: '1',
+  name: 'Pasta',
+  image: 'http://lol.lol'
+}
 
-    today: false,
+const ingredients = [
+  {name: 'Salt'},
+  {name: 'Spaghetti', amount: '400', amount_type: 'g'}
+]
 
-    getUser () {
-      return '345f804bfb3e6cdef3abb68f90489834'
-    },
+const instructions = [
+  {step: 1, description: 'LAGA!'}
+]
 
-    findRecipe (user) {
-      if (this.today) {
-        return this.recipe
-      }
-    },
+const fullRecipe = {
+  recipe: Object.assign({ingredients, instructions}, recipe)
+}
 
-    getNewRecipe (user) {
-      return this.recipe
-    }
-  }
+module.exports = {
+  user,
+  recipe,
+  ingredients,
+  instructions,
+  fullRecipe
 }

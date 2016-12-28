@@ -13,4 +13,4 @@ db.connect((error) => {
   http
     .createServer(app(data(db)))
     .listen(3000, () => console.log(`App listening on port 3000`))
-}
+})

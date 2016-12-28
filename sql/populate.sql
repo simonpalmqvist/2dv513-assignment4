@@ -1,5 +1,5 @@
 insert into users (id) values
-  ('345f804bfb3e6cdef3abb68f90489834')
+  ('345f804bfb3e6cdef3abb68f90489834');
 
 insert into recipes (name, image) values
   ('Pasta Carbonara', 'http://lol.org')

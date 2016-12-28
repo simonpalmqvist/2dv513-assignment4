@@ -7,11 +7,30 @@ module.exports = function (db) {
     },
 
     findRecipe (user) {
-      return db.query('find')
+      let recipe = null
+
+      return db.query(queries.getRecipeQuery, [user])
+        .then((result) => result.rows[0])
+        .then(({id, name, image}) => recipe = {id, name, image})
+        .then(() => db.query(queries.getIngredientsQuery, [recipe.id]))
+        .then((result) => recipe.ingredients = result.rows)
+        .then(() => db.query(queries.getInstructionsQuery, [recipe.id]))
+        .then((result) => recipe.instructions = result.rows)
+        .then(() => recipe)
     },
 
     getNewRecipe (user) {
-      return db.query('new')
+      let recipe = null
+
+      return db
+        .query(queries.getNewRecipeQuery, [user])
+        .then((result) => result.rows[0])
+        .then(({id, name, image}) => recipe = {id, name, image})
+        .then(() => db.query(queries.getIngredientsQuery, [recipe.id]))
+        .then((result) => recipe.ingredients = result.rows)
+        .then(() => db.query(queries.getInstructionsQuery, [recipe.id]))
+        .then((result) => recipe.instructions = result.rows)
+        .then(() => recipe)
     }
   }
 }

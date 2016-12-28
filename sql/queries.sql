@@ -15,8 +15,8 @@ SELECT EXISTS(
   FROM
     users
   WHERE
-    id = '345f804bfb3e6cdef3abb68f90489834'
-  );
+    id = $1
+  ) as exists;
 
 -- 3. Get users recipe for today (if user already has a recipe for the day)
 SELECT
@@ -28,7 +28,7 @@ FROM
 INNER JOIN
   recipes r on h.recipe_id = r.id
 WHERE
-  h.user_id = '345f804bfb3e6cdef3abb68f90489834' AND
+  h.user_id = $1 AND
   h.used_at = CURRENT_DATE;
 
 -- 4. Get a new recipe and add it to history
@@ -40,7 +40,7 @@ with random_recipe as (
   FROM
     recipes
   WHERE
-    id NOT IN (SELECT recipe_id FROM history WHERE user_id = '345f804bfb3e6cdef3abb68f90489834' ORDER BY used_at desc limit 2)
+    id NOT IN (SELECT recipe_id FROM history WHERE user_id = $1 ORDER BY used_at desc limit 2)
   ORDER BY
     RANDOM()
   LIMIT 1
@@ -48,7 +48,7 @@ with random_recipe as (
 inserted as (
   INSERT INTO history (user_id, recipe_id, used_at)
   SELECT
-    '345f804bfb3e6cdef3abb68f90489834',
+    $1,
     id,
     CURRENT_DATE
   FROM
@@ -62,7 +62,7 @@ SELECT
 FROM
   ingredients
 WHERE
-  recipe_id = 1;
+  recipe_id = $1;
 
 -- 6. Get instructions for recipe
 SELECT
@@ -70,6 +70,6 @@ SELECT
 FROM
   instructions
 WHERE
-  recipe_id = 1
+  recipe_id = $1
 ORDER BY
   step;

@@ -3,7 +3,13 @@ const request = require('supertest')
 const td = require('testdouble')
 const server = require('../../src/server')
 const data = require('../../src/server/data')
-const queries = require('../../src/server/queries')
+const {
+  newUserQuery,
+  getRecipeQuery,
+  getIngredientsQuery,
+  getInstructionsQuery
+} = require('../../src/server/queries')
+const {user, recipe, ingredients, instructions, fullRecipe} = require('./helper')
 
 const dbMock = {}
 const app = server(data(dbMock))
@@ -12,6 +18,12 @@ describe('API', function () {
 
   beforeEach(function () {
     dbMock.query = td.function()
+    td.when(dbMock.query(newUserQuery)).thenResolve({rows: [{id: user}]})
+    td.when(dbMock.query(getRecipeQuery, [user])).thenResolve({rows: [recipe]})
+    td.when(dbMock.query(getRecipeQuery, ['blaj'])).thenResolve({rows: []})
+    td.when(dbMock.query('new', [user])).thenResolve({rows: [recipe]})
+    td.when(dbMock.query(getIngredientsQuery, [recipe.id])).thenResolve({rows: ingredients})
+    td.when(dbMock.query(getInstructionsQuery, [recipe.id])).thenResolve({rows: instructions})
   })
 
   describe('GET unknown path', function () {
@@ -24,10 +36,6 @@ describe('API', function () {
 
   describe('GET /api/user', function () {
     it('Should respond with json', function (done) {
-      td.when(dbMock.query(queries.newUserQuery)).thenResolve({
-        rows: [{user: 'user'}]
-      })
-
       request(app)
         .get('/api/user')
         .set('Accept', 'application/json')
@@ -36,13 +44,8 @@ describe('API', function () {
     })
 
     it('Should respond with a new user id', function (done) {
-      let user = '345f804bfb3e6cdef3abb68f90489834'
-      td.when(dbMock.query(queries.newUserQuery)).thenResolve({
-        rows: [{user}]
-      })
-
       request(app)
-        .get('/api/user')
+        .get('/api/user' )
         .set('Accept', 'application/json')
         .expect({user}, done)
     })
@@ -51,7 +54,7 @@ describe('API', function () {
   describe('GET /api/recipe', function () {
     it('Should respond with json', function (done) {
       request(app)
-        .get('/api/recipe')
+        .get('/api/recipe?user=' + user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200, done)
@@ -59,45 +62,34 @@ describe('API', function () {
 
     it('Should respond without a recipe if not today', function (done) {
       request(app)
-        .get('/api/recipe')
+        .get('/api/recipe?user=blaj')
         .set('Accept', 'application/json')
         .expect({}, done)
     })
 
-    it.skip('Should respond with a recipe if today', function (done) {
+    it('Should respond with a recipe if today', function (done) {
       request(app)
-        .get('/api/recipe')
+        .get('/api/recipe?user=' + user)
         .set('Accept', 'application/json')
-        .expect({recipe: dataMock.recipe}, done)
+        .expect(fullRecipe, done)
     })
   })
 
   describe('GET /api/recipe/new', function () {
+
     it('Should respond with json', function (done) {
       request(app)
-        .get('/api/recipe/new')
+        .get('/api/recipe/new?user=' + user)
         .set('Accept', 'application/json')
         .expect('Content-Type', /json/)
         .expect(200, done)
     })
 
-    it.skip('Should respond with a recipe', function (done) {
+    it('Should respond with a recipe', function (done) {
       request(app)
-        .get('/api/recipe/new')
+        .get('/api/recipe/new?user=' + user)
         .set('Accept', 'application/json')
-        .expect({
-          recipe: {
-            name: 'Pasta',
-            image: 'http://lol.lol',
-            ingredients: [
-              {name: 'Salt'},
-              {name: 'Spaghetti', amount: '400', amount_type: 'g'}
-            ],
-            instructions: [
-              {step: 1, description: 'LAGA!'}
-            ]
-          }
-        }, done)
+        .expect(fullRecipe, done)
     })
   })
 })
