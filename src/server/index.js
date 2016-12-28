@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const http = require('http')
-
+const api = require('./api')
 
 module.exports = function () {
   const app = express()
@@ -10,6 +10,8 @@ module.exports = function () {
   app.use(bodyParser.urlencoded({ extended: true }))
 
   app.use(express.static(`${__dirname}/../public`))
+
+  app.use('/api', api())
 
   app.use((request, response) => {
     response

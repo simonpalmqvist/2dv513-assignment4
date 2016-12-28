@@ -6,7 +6,7 @@ insert into recipes (name, image) values
 returning *;
 
 insert into ingredients (recipe_id, name, amount, amount_type) values
-  (1, '400g Spaghetti', '400', 'g'),
+  (1, 'Spaghetti', '400', 'g'),
   (1, 'Ägg', '4', NULL),
   (1, 'Grädde', '2', 'dl'),
   (1, 'Bacon', '1', 'paket'),
