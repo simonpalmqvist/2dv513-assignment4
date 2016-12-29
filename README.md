@@ -11,3 +11,5 @@ docker-compose up --build
 #Access database from terminal
 docker exec -it 2dv513assignment3_db_1 psql -U postgres
 ```
+
+App should be available at http://localhost:3000
