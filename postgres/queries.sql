@@ -9,16 +9,7 @@ select
   )
 returning *;
 
--- 2. Check if user exists
-SELECT EXISTS(
-  SELECT id
-  FROM
-    users
-  WHERE
-    id = $1
-  ) as exists;
-
--- 3. Get users recipe for today (if user already has a recipe for the day)
+-- 2. Get users recipe for today (if user already has a recipe for the day)
 SELECT
   r.id,
   r.name,
@@ -32,7 +23,7 @@ WHERE
   h.user_id = $1 AND
   h.used_at = CURRENT_DATE;
 
--- 4. Get a new recipe and add it to history
+-- 3. Get a new recipe and add it to history
 with random_recipe as (
   SELECT
     id,
@@ -58,7 +49,7 @@ inserted as (
 )
 SELECT * FROM random_recipe;
 
--- 5. Get ingredients for recipe
+-- 4. Get ingredients for recipe
 SELECT
   *
 FROM
@@ -66,7 +57,7 @@ FROM
 WHERE
   recipe_id = $1;
 
--- 6. Get instructions for recipe
+-- 5. Get instructions for recipe
 SELECT
   *
 FROM
