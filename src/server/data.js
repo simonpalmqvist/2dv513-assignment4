@@ -11,7 +11,7 @@ module.exports = function (db) {
 
       return db.query(queries.getRecipeQuery, [user])
         .then((result) => result.rows[0])
-        .then(({id, name, image}) => recipe = {id, name, image})
+        .then(({id, name, image, tag}) => recipe = {id, name, image, tag})
         .then(() => db.query(queries.getIngredientsQuery, [recipe.id]))
         .then((result) => recipe.ingredients = result.rows)
         .then(() => db.query(queries.getInstructionsQuery, [recipe.id]))
@@ -25,7 +25,7 @@ module.exports = function (db) {
       return db
         .query(queries.getNewRecipeQuery, [user])
         .then((result) => result.rows[0])
-        .then(({id, name, image}) => recipe = {id, name, image})
+        .then(({id, name, image, tag}) => recipe = {id, name, image, tag})
         .then(() => db.query(queries.getIngredientsQuery, [recipe.id]))
         .then((result) => recipe.ingredients = result.rows)
         .then(() => db.query(queries.getInstructionsQuery, [recipe.id]))

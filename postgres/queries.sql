@@ -22,7 +22,8 @@ SELECT EXISTS(
 SELECT
   r.id,
   r.name,
-  r.image
+  r.image,
+  r.tag
 FROM
   history h
 INNER JOIN
@@ -36,7 +37,8 @@ with random_recipe as (
   SELECT
     id,
     name,
-    image
+    image,
+    tag
   FROM
     recipes
   WHERE

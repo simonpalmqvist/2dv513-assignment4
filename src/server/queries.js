@@ -15,7 +15,8 @@ module.exports = {
     SELECT
       r.id,
       r.name,
-      r.image
+      r.image,
+      r.tag
     FROM
       history h
     INNER JOIN
@@ -30,7 +31,8 @@ module.exports = {
       SELECT
         id,
         name,
-        image
+        image,
+        tag
       FROM
         recipes
       WHERE

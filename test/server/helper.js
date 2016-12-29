@@ -4,7 +4,8 @@ const user = '345f804bfb3e6cdef3abb68f90489834'
 const recipe = {
   id: '1',
   name: 'Pasta',
-  image: 'http://lol.lol'
+  image: 'http://lol.lol',
+  tag: 'Läckert'
 }
 
 const ingredients = [

@@ -4,6 +4,7 @@
   "description": "Assignment 3",
   "main": "src/app.js",
   "scripts": {
+    "start": "node app/app.js",
     "watch": "nodemon -L app/app.js",
     "test": "mocha test/**/*.spec.js -w"
   },
@@ -21,7 +22,8 @@
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "pg": "^6.1.2",
-    "preact": "^7.1.0"
+    "preact": "^7.1.0",
+    "whatwg-fetch": "^2.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.21.0",

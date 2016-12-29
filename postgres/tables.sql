@@ -5,7 +5,8 @@ CREATE TABLE users (
 CREATE TABLE recipes (
   id SERIAL PRIMARY KEY,
   name varchar(50) NOT NULL CHECK (name NOT LIKE ''),
-  image text NOT NULL
+  image text NOT NULL,
+  tag varchar(100) NOT NULL
 );
 
 CREATE TABLE ingredients (
