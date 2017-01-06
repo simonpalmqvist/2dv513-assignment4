@@ -29,6 +29,26 @@ MongoClient.connect(url)
           ]
         },
         {
+          name: 'Fusilli á la Caprese',
+          image: 'img/fusilli-a-la-caprese.jpg',
+          tag: 'Vegetariskt men jädrans gott ändå.',
+          ingredients: [
+            {name: 'Fusilli eller valfri pasta', amount: 400, amount_type: 'g'},
+            {name: 'Körsbärstomater', amount: 250, amount_type: 'g'},
+            {name: 'Mozzarella', amount: 250, amount_type: 'g'},
+            {name: 'Rödlök', amount: 1},
+            {name: 'Balsamico creme'},
+            {name: 'Flingsalt'},
+            {name: 'Olivolja'}
+          ],
+          instructions: [
+            {step: 1, description: 'Koka pastan enligt anvisning.'},
+            {step: 2, description: 'Finhacka rödlöken, skär körsbärstomaterna i klyftor och tärna mozzarellan.'},
+            {step: 3, description: 'Lägg upp pastan på en tallrik och strö över ingredienserna. Garnera med flingsalt, olivolja och en rejäl klick balsamic
+          o creme.'}
+          ]
+        },
+        {
           name: 'Korv med bröd',
           image: 'img/korv-med-brod.jpg',
           tag: 'En tysk klassiker!',
@@ -45,7 +65,7 @@ MongoClient.connect(url)
           ]
         }
       ])
-      .then(() => console.log('DB populated with recipes and one user'))
+      .then(() => console.log('DB populated with recipes'))
       .then(() => db.close())
   })
   .catch(console.log)
