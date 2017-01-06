@@ -26,6 +26,7 @@
 ```
 
 ## users document
+```
 {
   "_id" : ObjectId("586f8c8bd4b68500268d58ba"),
   "history" : [
