@@ -32,7 +32,7 @@ export default class Recipe extends Component {
     }
 
     const ingredients = recipe.ingredients
-      .map((i) => `${i.amount} ${i.amount_type} ${i.name}`.replace(/null /g, ''))
+      .map((i) => `${i.amount} ${i.amount_type} ${i.name}`.replace(/undefined /g, ''))
 
     const instructions = recipe.instructions
       .map((i) => `${i.step}. ${i.description}`)
@@ -44,8 +44,8 @@ export default class Recipe extends Component {
           name={recipe.name}
           tag={recipe.tag}
           image={recipe.image} />
-        <PaperList items={ingredients} />
-        <PaperList items={instructions} />
+        <PaperList items={ingredients} title='Ingredienser' />
+        <PaperList items={instructions} title='Instruktioner' />
       </div>
     )
   }

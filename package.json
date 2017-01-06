@@ -1,7 +1,7 @@
 {
-  "name": "2dv513-assignment3",
+  "name": "2dv513-assignment4",
   "version": "1.0.0",
-  "description": "Assignment 3",
+  "description": "Assignment 4",
   "main": "src/app.js",
   "scripts": {
     "start": "node app/app.js",
@@ -10,19 +10,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/simonpalmqvist/2dv513-assignment3.git"
+    "url": "git+https://github.com/simonpalmqvist/2dv513-assignment4.git"
   },
   "author": "simonpalmqvist",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/simonpalmqvist/2dv513-assignment3/issues"
+    "url": "https://github.com/simonpalmqvist/2dv513-assignment4/issues"
   },
-  "homepage": "https://github.com/simonpalmqvist/2dv513-assignment3#readme",
+  "homepage": "https://github.com/simonpalmqvist/2dv513-assignment4#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
     "express": "^4.14.0",
     "mongodb": "^2.2.19",
-    "pg": "^6.1.2",
     "preact": "^7.1.0",
     "whatwg-fetch": "^2.0.1"
   },

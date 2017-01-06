@@ -1,16 +1,13 @@
 const http = require('http')
-const pg = require('pg')
 const app = require('./server')
 const data = require('./server/data')
+const { MongoClient } = require('mongodb')
 
-const db = new pg.Client()
+const url = 'mongodb://db:27017'
 
-db.connect((error) => {
-  if (error) {
-    throw error
-  }
-
-  http
-    .createServer(app(data(db)))
-    .listen(3000, () => console.log(`App listening on port 3000`))
-})
+MongoClient.connect(url)
+  .then((db) => {
+    http
+      .createServer(app(data(db)))
+      .listen(3000, () => console.log(`App listening on port 3000`))
+  })

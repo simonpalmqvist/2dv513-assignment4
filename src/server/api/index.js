@@ -6,8 +6,7 @@ module.exports = function (data) {
     .get((request, response) => {
       data
         .getUser()
-        .then((result) => result.rows[0])
-        .then(({id}) => response.json({user: id}))
+        .then((id) => response.json({user: id}))
         .catch(() => response.sendStatus(500))
     })
 

@@ -5,11 +5,12 @@
 #Start application and database
 docker-compose up --build
 
-#Create tables and populate database
-./postgres/populate.sh
+#Populate database
+npm install mongodb
+node mongodb/populate.js
 
 #Access database from terminal
-docker exec -it 2dv513assignment3_db_1 psql -U postgres
+docker exec -it 2dv513assignment4_db_1 mongo
 ```
 
 App should be available at http://localhost:3000

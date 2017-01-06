@@ -1425,7 +1425,7 @@
 	      };
 	
 	      var ingredients = recipe.ingredients.map(function (i) {
-	        return (i.amount + ' ' + i.amount_type + ' ' + i.name).replace(/null /g, '');
+	        return (i.amount + ' ' + i.amount_type + ' ' + i.name).replace(/undefined /g, '');
 	      });
 	
 	      var instructions = recipe.instructions.map(function (i) {
@@ -1440,8 +1440,8 @@
 	          name: recipe.name,
 	          tag: recipe.tag,
 	          image: recipe.image }),
-	        (0, _preact.h)(_PaperList2.default, { items: ingredients }),
-	        (0, _preact.h)(_PaperList2.default, { items: instructions })
+	        (0, _preact.h)(_PaperList2.default, { items: ingredients, title: 'Ingredienser' }),
+	        (0, _preact.h)(_PaperList2.default, { items: instructions, title: 'Instruktioner' })
 	      );
 	    }
 	  }]);
@@ -1485,7 +1485,9 @@
 	  _createClass(PaperList, [{
 	    key: 'render',
 	    value: function render() {
-	      var items = this.props.items;
+	      var _props = this.props,
+	          items = _props.items,
+	          title = _props.title;
 	
 	      var last = items.length - 1;
 	
@@ -1527,6 +1529,11 @@
 	      return (0, _preact.h)(
 	        'div',
 	        { style: listStyle },
+	        (0, _preact.h)(
+	          'h3',
+	          { style: { fontSize: '1.8em' } },
+	          title
+	        ),
 	        (0, _preact.h)(
 	          'ul',
 	          { style: ulStyle },

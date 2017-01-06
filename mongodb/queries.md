@@ -1,8 +1,8 @@
 # Queries
 
-## Create a new user
+## Create a new user and return id
 ```
-db.users.insert({ 'history': [] });
+db.users.insertOne({ 'history': [] });
 ```
 
 ### Check so user exists

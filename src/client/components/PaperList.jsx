@@ -3,7 +3,7 @@ import { h, Component } from 'preact'
 
 export default class PaperList extends Component {
   render () {
-    const {items} = this.props
+    const {items, title} = this.props
     const last = items.length -1
 
     const listStyle = {
@@ -40,6 +40,7 @@ export default class PaperList extends Component {
 
     return (
       <div style={listStyle}>
+        <h3 style={{fontSize: '1.8em'}}>{title}</h3>
         <ul style={ulStyle}>
           {list}
         </ul>

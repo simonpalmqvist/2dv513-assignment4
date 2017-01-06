@@ -6,10 +6,10 @@ RUN npm install nodemon -g
 
 WORKDIR /src
 COPY package.json /src/package.json
-COPY postgres/wait-for-it.sh /src/
+COPY mongodb/wait-for-it.sh /src/
 RUN chmod 777 wait-for-it.sh
 RUN npm install
 
 EXPOSE 3000
 
-CMD ["./wait-for-it.sh", "db:5432", "--", "npm", "start"]
+CMD ["./wait-for-it.sh", "db:27017", "--", "npm", "run", "watch"]

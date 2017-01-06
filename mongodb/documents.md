@@ -1,7 +1,6 @@
+# Documents
 
-
-
-#recipes document
+## recipes document
 ```
 {
   "_id" : ObjectId("586f5d66e173cc12cda064ac"),
@@ -26,4 +25,13 @@
 }
 ```
 
-#users document
+## users document
+{
+  "_id" : ObjectId("586f8c8bd4b68500268d58ba"),
+  "history" : [
+    {
+      "recipe_id" : ObjectId("586f8c837b0a651f89cd60ef"),
+      "date" : ISODate("2017-01-06T12:24:45.598Z")
+    }
+  ]
+}

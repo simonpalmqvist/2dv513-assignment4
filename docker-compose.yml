@@ -1,7 +1,7 @@
 db:
-  build: ./postgres
-  environment:
-    - POSTGRES_PASSWORD=password
+  image: mongo:latest
+  ports:
+    - "27017:27017"
 myapp:
   build: .
   volumes:
@@ -10,8 +10,3 @@ myapp:
       - "3000:3000"
   links:
     - db
-  environment:
-    - PGHOST=db
-    - PGDATABASE=postgres
-    - PGUSER=postgres
-    - PGPASSWORD=password
