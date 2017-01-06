@@ -1,4 +1,3 @@
-const queries = require('./queries')
 const ObjectId = require('mongodb').ObjectID
 
 const USERS = 'users'

@@ -12,4 +12,4 @@ RUN npm install
 
 EXPOSE 3000
 
-CMD ["./wait-for-it.sh", "db:27017", "--", "npm", "run", "watch"]
+CMD ["./wait-for-it.sh", "db:27017", "--", "npm", "start"]
